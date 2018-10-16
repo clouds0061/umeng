@@ -1,0 +1,47 @@
+group 'com.giant.umeng'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'http://dl.bintray.com/populov/maven'}
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        mavenCentral()
+        maven { url 'http://dl.bintray.com/populov/maven'}
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+dependencies {
+    compileOnly files('libs/flutter.jar')
+    //    compile 'com.umeng.sdk:common:1.5.3'
+    implementation files('libs/umeng-common-1.5.3.jar')
+    compile 'com.umeng.sdk:analytics:7.5.3'
+    compile 'com.umeng.sdk:utdid:1.1.5.3'
+    implementation files('libs/umeng-share-core-6.9.3.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.3.jar')
+}
