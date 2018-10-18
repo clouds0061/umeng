@@ -17,5 +17,12 @@ A new Flutter plugin.
   s.dependency 'Flutter'
 
   s.ios.deployment_target = '8.0'
+  
+  
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-lz' }
+#    s.vendored_frameworks = 'Classes/UMCommon.framework','Classes/UMCSecurityPlugins.framework','UTDID.framework','Classes/UMAnalytics.framework','Classes/UMCommonLog.framework'
+    s.vendored_frameworks ='Classes/UMCommon.framework','Classes/UMAnalytics.framework','Classes/UMCommonLog.framework'
+#  s.vendored_frameworks =['Classes/UMCommon.framework','Classes/UMAnalytics.framework']
+
 end
 

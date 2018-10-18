@@ -32,13 +32,44 @@ class Umeng {
     return result;
   }
 
+  //ios 初始化
+  static Future<String> initUmIos(String appId,String channel) async {
+    final String result = await _channel.invokeMethod('initPhone', {'iosAppId': appId,"channel":channel});
+    return result;
+  }
+
+  //获取集成厕所所需 deviceId
+  static Future<String> getDeviceId() async{
+    final String result = await _channel.invokeMethod('getDeviceId');
+    return result;
+  }
+
+
+  //android  页面统计
   static Future<String> onResume() async {
     final String result = await _channel.invokeMethod('onResume');
     return result;
   }
 
+  //android 页面统计
   static Future<String> onPause() async {
     final String result = await _channel.invokeMethod('onPause');
     return result;
   }
+
+
+
+  //iOS  页面统计
+  static Future<String> onPageStart(String pageName) async {
+    final String result = await _channel.invokeMethod('onPageStart',{'pagename':pageName});
+    return result;
+  }
+
+  //iOS 页面统计
+  static Future<String> onPageEnd(String pageName) async {
+    final String result = await _channel.invokeMethod('onPageEnd',{'pagename':pageName});
+    return result;
+  }
+
+
 }
