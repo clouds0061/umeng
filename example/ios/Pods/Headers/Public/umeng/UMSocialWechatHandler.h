@@ -1,0 +1,1 @@
+../../../../.symlinks/plugins/umeng/ios/Classes/umeng/UMSocialWechatHandler.h

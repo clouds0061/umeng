@@ -1,0 +1,11 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../.symlinks/flutter/ios" "${PODS_ROOT}/../.symlinks/plugins/umeng/ios/Classes/umeng"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Flutter" "${PODS_ROOT}/Headers/Public/umeng"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/umeng" "${PODS_ROOT}/../.symlinks/plugins/umeng/ios/Classes/umeng"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Flutter" -isystem "${PODS_ROOT}/Headers/Public/umeng"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"SocialQQ" -l"SocialSina" -l"SocialWeChat" -l"umeng" -l"z" -framework "Flutter" -framework "SecurityEnvSDK" -framework "UMAnalytics" -framework "UMCommon" -framework "UMCommonLog" -framework "UMShare" -framework "UShareUI" -framework "UTDID"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods

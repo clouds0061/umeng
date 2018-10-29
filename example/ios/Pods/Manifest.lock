@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - umeng (0.0.2):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios`)
+  - umeng (from `.symlinks/plugins/umeng/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  umeng:
+    :path: ".symlinks/plugins/umeng/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  umeng: 45c801ac5d7789ebe9147175ee24cf73a16bb80f
+
+PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2
+
+COCOAPODS: 1.5.3
