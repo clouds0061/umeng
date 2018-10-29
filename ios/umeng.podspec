@@ -13,7 +13,7 @@ A new Flutter plugin.
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.public_header_files = 'Classes/**/*.h','Classes/umeng/*.h'
   s.dependency 'Flutter'
 
   s.ios.deployment_target = '8.0'
@@ -21,8 +21,11 @@ A new Flutter plugin.
   
   s.xcconfig = { 'OTHER_LDFLAGS' => '-lz' }
 #    s.vendored_frameworks = 'Classes/UMCommon.framework','Classes/UMCSecurityPlugins.framework','UTDID.framework','Classes/UMAnalytics.framework','Classes/UMCommonLog.framework'
-    s.vendored_frameworks ='Classes/UMCommon.framework','Classes/UMAnalytics.framework','Classes/UMCommonLog.framework'
+#    s.vendored_frameworks ='Classes/UMCommon.framework','Classes/UMAnalytics.framework','Classes/UMCommonLog.framework'
 #  s.vendored_frameworks =['Classes/UMCommon.framework','Classes/UMAnalytics.framework']
+    s.vendored_libraries = 'Classes/umeng/*.a'
+    s.vendored_frameworks = 'Classes/umeng/*.framework'
+    s.resource = 'Classes/umeng/*.bundle'
 
 end
 
