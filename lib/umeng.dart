@@ -142,6 +142,9 @@ class Umeng {
     return result;
   }
 
+  static Future<String> isWeChatInstalled() async{
+    final String result = await _channel.invokeMethod('isWeChatInstalled');
+  }
 //  static Future<String> wXShareTest() async {
 //    final String result = await _channel.invokeMethod(
 //        'wxShareVedio', {'content':content, 'vedio':vedio

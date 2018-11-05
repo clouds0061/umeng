@@ -70,8 +70,10 @@
            [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:appId appSecret:@"" redirectURL:@"https://sns.whalecloud.com/sina2/callback" ];
       [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatFavorite),@(UMSocialPlatformType_WechatTimeLine)]];
       result([@"成功获取到appId" stringByAppendingString:appId]);
-  }else if([@"" isEqualToString:call.method]){
-      
+  }else if([@"isWeChatInstalled" isEqualToString:call.method]){//判断是否安装微信
+      NSString *reslut = @"0";//0 是未安装， 1是安装了
+      if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) result = "1";
+      result(result);
   }
   else if([@"wxShareWeb" isEqualToString:call.method]){//微信分享web
       NSDictionary *dict = call.arguments;
