@@ -211,7 +211,7 @@
 {
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:title thumImage:imgUrl];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:descr thumImage:imgUrl];
     shareObject.webpageUrl = shareUrl;
     messageObject.shareObject = shareObject;
     [[UMSocialManager defaultManager] shareToPlatform:type messageObject:messageObject currentViewController:nil completion:^(id data,NSError *error){
