@@ -110,7 +110,7 @@ class Umeng {
   }
 
   //微信分享web ios
-  static Future<String> wXShareWebWithD(String imgUrl, String shareUrl,
+  static Future<String> wXShareWeb(String imgUrl, String shareUrl,
       String title) async {
     final String result = await _channel.invokeMethod(
         'wxShareWeb', {'imgUrl':imgUrl, 'shareUrl':shareUrl
