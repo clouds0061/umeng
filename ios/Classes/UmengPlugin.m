@@ -75,15 +75,27 @@
       NSLog(@"-----进入微信判断逻辑");
       if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]||[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weixin://"]]) result(@"1");
       else result(@"0");
+  }else if([@"wxShareWebWithDescr" isEqualToString:call.method]){
+      NSDictionary *dict = call.arguments;
+      NSString *imgUrl = dict[@"imgUrl"];
+      NSString *title = dict[@"title"];
+      NSString *shareUrl = dict[@"shareUrl"];
+      NSString *descr = dict[@"descr"];
+      [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType type
+                                                                               ,NSDictionary *uerInfo){
+          [self shareWebPage:type imgUrl:imgUrl descr:descr title:title shareUrl:shareUrl flutterReslut:result];
+          
+      }];
   }
   else if([@"wxShareWeb" isEqualToString:call.method]){//微信分享web
       NSDictionary *dict = call.arguments;
       NSString *imgUrl = dict[@"imgUrl"];
       NSString *title = dict[@"title"];
       NSString *shareUrl = dict[@"shareUrl"];
+      NSString *descr = @"";
       [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType type
                                                                                ,NSDictionary *uerInfo){
-          [self shareWebPage:type imgUrl:imgUrl title:title shareUrl:shareUrl flutterReslut:result];
+          [self shareWebPage:type imgUrl:imgUrl descr:descr title:title shareUrl:shareUrl flutterReslut:result];
           
       }];
   }
@@ -195,11 +207,11 @@
 }
 
 //分享网页
--(void)shareWebPage:(UMSocialPlatformType)type imgUrl:(NSString*)imgUrl title:(NSString*)title shareUrl:(NSString*)shareUrl flutterReslut:(FlutterResult)result
+-(void)shareWebPage:(UMSocialPlatformType)type imgUrl:(NSString*)imgUrl descr:(NSString*)descr title:(NSString*)title shareUrl:(NSString*)shareUrl flutterReslut:(FlutterResult)result
 {
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:@"测试分享" thumImage:imgUrl];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:title thumImage:imgUrl];
     shareObject.webpageUrl = shareUrl;
     messageObject.shareObject = shareObject;
     [[UMSocialManager defaultManager] shareToPlatform:type messageObject:messageObject currentViewController:nil completion:^(id data,NSError *error){

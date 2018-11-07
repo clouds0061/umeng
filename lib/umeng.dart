@@ -100,8 +100,17 @@ class Umeng {
     return result;
   }
 
+  //微信分享web ios wxShareWebWithDescr
+  static Future<String> wXShareWebDescr(String imgUrl, String shareUrl,
+      String title,String descr) async {
+    final String result = await _channel.invokeMethod(
+        'wxShareWebWithDescr', {'imgUrl':imgUrl,'descr':descr, 'shareUrl':shareUrl
+      , 'title':title,});
+    return result;
+  }
+
   //微信分享web ios
-  static Future<String> wXShareWeb(String imgUrl, String shareUrl,
+  static Future<String> wXShareWebWithD(String imgUrl, String shareUrl,
       String title) async {
     final String result = await _channel.invokeMethod(
         'wxShareWeb', {'imgUrl':imgUrl, 'shareUrl':shareUrl
