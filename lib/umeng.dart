@@ -157,7 +157,7 @@ class Umeng {
   static Future<String> wXShareImageText(String text, String thumbImageUrl,
       String imageUrl) async {
     final String result = await _channel.invokeMethod(
-        'wxShareVedio', {'text':text, 'thumbImageUrl':thumbImageUrl
+        'wXShareImageText', {'text':text, 'thumbImageUrl':thumbImageUrl
       , 'imageUrl':imageUrl});
     return result;
   }
