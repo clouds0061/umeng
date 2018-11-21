@@ -118,14 +118,14 @@
           
       }];
   }
-  else if([@"wxShareImageAndText" isEqualToString:call.method]){//分享图文混合.
-//      NSDictionary *dict = call.arguments;
-//      NSString *imgUrl = dict[@"imgUrl"];
-//      NSString *title = dict[@"title"];
-//      NSString *shareUrl = dict[@"shareUrl"];
+  else if([@"wXShareImageText" isEqualToString:call.method]){//分享图文混合.
+      NSDictionary *dict = call.arguments;
+      NSString *text = dict[@"text"];
+      NSString *thumbImageUrl = dict[@"thumbImageUrl"];
+      NSString *imageUrl = dict[@"imageUrl"];
       [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType type
                                                                                ,NSDictionary *uerInfo){
-//          [self share];
+          [self shareImageText:type result:result text:text image:imageUrl thumbImage:thumbImageUrl];
           
       }];
   }
@@ -257,10 +257,10 @@
     //创建图片内容
     UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
     //吧url图片转换成UIImage类型缓存下来
-    NSURL *url = [NSURL URLWithString:iconUrl];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+//    NSURL *url = [NSURL URLWithString:iconUrl];
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
     //如果有略缩图 则设置略缩图
-    shareObject.thumbImage = image;
+    shareObject.thumbImage = [UIImage imageNamed:iconUrl];
     [shareObject setShareImage:imgUrl];
     messageObject.shareObject = shareObject;
     [[UMSocialManager defaultManager] shareToPlatform:type messageObject:messageObject currentViewController:nil completion:^(id data,NSError *error){
@@ -320,6 +320,30 @@
         }
     }];
     
+}
+
+//分享图文
+-(void)shareImageText:(UMSocialPlatformType)type result:(FlutterResult)result text:(NSString*) text
+                image:(NSString*)image thumbImage:(NSString*)thumbImage{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    //设置文本
+    messageObject.text = text;
+    //创建图片内容对象
+    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+    if(thumbImage!=NULL)shareObject.thumbImage = [UIImage imageNamed:thumbImage];
+    [shareObject setShareImage:image];
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:type messageObject:messageObject currentViewController:nil completion:^(id data,NSError *error){
+        if(error){
+            result(@"failed to share iamgeText");
+        }else{
+             result(@"success to share");
+        }
+    }];
 }
 
 @end

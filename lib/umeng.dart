@@ -102,10 +102,11 @@ class Umeng {
 
   //微信分享web ios wxShareWebWithDescr
   static Future<String> wXShareWebDescr(String imgUrl, String shareUrl,
-      String title,String descr) async {
+      String title, String descr) async {
     final String result = await _channel.invokeMethod(
-        'wxShareWebWithDescr', {'imgUrl':imgUrl,'descr':descr, 'shareUrl':shareUrl
-      , 'title':title,});
+        'wxShareWebWithDescr',
+        {'imgUrl':imgUrl, 'descr':descr, 'shareUrl':shareUrl
+          , 'title':title,});
     return result;
   }
 
@@ -135,23 +136,33 @@ class Umeng {
   //微信分享Music ios
   /*
    */
-  static Future<String> wXShareMusic(String musicUrl,String musicDataUrl,String title,String content,String icon) async {
+  static Future<String> wXShareMusic(String musicUrl, String musicDataUrl,
+      String title, String content, String icon) async {
     final String result = await _channel.invokeMethod(
         'wxShareMusic', {'musicUrl':musicUrl, 'musicDataUrl':musicDataUrl
-      , 'title':title,'content':content,'iconUrl':icon});
+      , 'title':title, 'content':content, 'iconUrl':icon});
     return result;
   }
 
   //微信分享vedio ios
   static Future<String> wXShareVedio(String content, String vedio,
-      String title,String iconUrl) async {
+      String title, String iconUrl) async {
     final String result = await _channel.invokeMethod(
         'wxShareVedio', {'content':content, 'vedio':vedio
-      , 'title':title,'iconUrl':iconUrl});
+      , 'title':title, 'iconUrl':iconUrl});
     return result;
   }
 
-  static Future<String> isWeChatInstalled() async{
+  //微信分享 图文
+  static Future<String> wXShareImageText(String text, String thumbImageUrl,
+      String imageUrl) async {
+    final String result = await _channel.invokeMethod(
+        'wxShareVedio', {'text':text, 'thumbImageUrl':thumbImageUrl
+      , 'imageUrl':imageUrl});
+    return result;
+  }
+
+  static Future<String> isWeChatInstalled() async {
     final String result = await _channel.invokeMethod('isWeChatInstalled');
     return result;
   }
