@@ -329,10 +329,11 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     //设置文本
     messageObject.text = text;
+    UIImage *images = [UIImage imageNamed:image];
     //创建图片内容对象
     UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
     if(thumbImage!=NULL)shareObject.thumbImage = [UIImage imageNamed:thumbImage];
-    [shareObject setShareImage:image];
+    [shareObject setShareImage:images];
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
