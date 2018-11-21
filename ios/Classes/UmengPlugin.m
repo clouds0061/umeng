@@ -339,7 +339,8 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:type messageObject:messageObject currentViewController:nil completion:^(id data,NSError *error){
         if(error){
-            result(@"failed to share iamgeText");
+            NSString *errorString = [error localizedDescription];
+            result([@"failed to share iamgeText" stringByAppendingString:errorString]);
         }else{
              result(@"success to share");
         }
